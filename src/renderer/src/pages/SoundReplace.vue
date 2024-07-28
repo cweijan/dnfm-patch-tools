@@ -13,7 +13,7 @@
                 <a-input-group compact>
                     <a-input v-model:value="formState.sourceNpk" style="width: calc(100% - 50px)" allow-clear />
                     <a-tooltip title="选择文件">
-                        <a-button @click="chooseFile('sourceNpk')">
+                        <a-button @click="chooseFile('sourceNpk2')">
                             <template #icon>
                                 <CopyOutlined />
                             </template>
@@ -25,7 +25,7 @@
                 <a-input-group compact>
                     <a-input v-model:value="formState.targetNpk" style="width: calc(100% - 50px)" allow-clear />
                     <a-tooltip title="选择文件">
-                        <a-button @click="chooseFile('targetNpk')">
+                        <a-button @click="chooseFile('targetNpk2')">
                             <template #icon>
                                 <CopyOutlined />
                             </template>
@@ -59,10 +59,10 @@ const chooseFile = (type: string) => {
 
 handler.on('file', ({ type, path }) => {
     switch (type) {
-        case 'sourceNpk':
+        case 'sourceNpk2':
             formState.sourceNpk = path
             break
-        case 'targetNpk':
+        case 'targetNpk2':
             formState.targetNpk = path
             break
     }

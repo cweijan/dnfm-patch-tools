@@ -1,5 +1,7 @@
 import { BrowserWindow, dialog, ipcMain, shell } from 'electron'
 import { blockNpk, skipCheck } from './handler/skipCheck';
+import Store from 'electron-store';
+const store = new Store<Record<string, string>>();
 
 function send(event: string, data?: any) {
     const win = BrowserWindow.getFocusedWindow();
@@ -15,9 +17,13 @@ export function initIPCHandler() {
                 shell.openExternal(data)
                 break;
             case 'chooseFile':
-                dialog.showOpenDialog({ properties: ['openFile'] }).then(function (response) {
+                const type = data.type;
+                const key = `lastPath-${type}`
+                const defaultPath = store.get(key);
+                dialog.showOpenDialog({ defaultPath, properties: ['openFile'] }).then(function (response) {
                     if (response.canceled) return;
                     const filePath = response.filePaths[0]
+                    store.set(key, filePath);
                     send('file', { ...data, path: filePath });
                 });
                 break;
