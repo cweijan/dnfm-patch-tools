@@ -1,5 +1,6 @@
 import { shell } from 'electron';
 import fs from 'fs';
+import path from 'path';
 
 interface SkipCheckInfo {
     sourceNpk: string;
@@ -22,9 +23,25 @@ export function skipCheck(data: SkipCheckInfo) {
         }
         setTimeout(() => {
             shell.showItemInFolder(targetNpk);
-        }, 1000);
+        }, 300);
         return { success: true, text: '跳检测处理完成!' }
     } catch (err) {
         return { success: false, text: err }
     }
+}
+
+export function blockNpk(npkPath: string) {
+    const stats = fs.statSync(npkPath);
+    const fileSize = stats.size;
+    const buffer = Buffer.alloc(fileSize, 0);
+    const outputDir = path.join(path.dirname(npkPath), '语音屏蔽');
+    if (!fs.existsSync(outputDir)) {
+        fs.mkdirSync(outputDir);
+    }
+    const outputPath = path.join(outputDir, path.basename(npkPath));
+    fs.writeFileSync(outputPath, buffer);
+    setTimeout(() => {
+        shell.showItemInFolder(outputPath);
+    }, 300);
+    return { success: true, text: '屏蔽补丁生成完成!' };
 }

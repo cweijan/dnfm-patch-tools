@@ -1,5 +1,5 @@
 import { BrowserWindow, dialog, ipcMain, shell } from 'electron'
-import { skipCheck } from './handler/skipCheck';
+import { blockNpk, skipCheck } from './handler/skipCheck';
 
 function send(event: string, data?: any) {
     const win = BrowserWindow.getFocusedWindow();
@@ -24,6 +24,9 @@ export function initIPCHandler() {
             case 'skipCheck':
                 const message = skipCheck(data);
                 send('notice', message);
+                break;
+            case 'blockNpk':
+                send('notice', blockNpk(data));
                 break;
         }
     })
