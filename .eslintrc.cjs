@@ -9,6 +9,7 @@ module.exports = {
     "@vue/eslint-config-typescript/recommended",
   ],
   rules: {
+    "no-case-declarations": 'off',
     "vue/html-indent": "off",
     "vue/require-default-prop": "off",
     "vue/max-attributes-per-line": "off",

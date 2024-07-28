@@ -1,4 +1,5 @@
 import { BrowserWindow, dialog, ipcMain, shell } from 'electron'
+import { skipCheck } from './handler/skipCheck';
 
 function send(event: string, data?: any) {
     const win = BrowserWindow.getFocusedWindow();
@@ -19,6 +20,10 @@ export function initIPCHandler() {
                     const filePath = response.filePaths[0]
                     send('file', { ...data, path: filePath });
                 });
+                break;
+            case 'skipCheck':
+                const message = skipCheck(data);
+                send('notice', message);
                 break;
         }
     })

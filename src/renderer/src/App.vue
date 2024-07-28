@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import type { ItemType, MenuProps } from 'ant-design-vue';
+import { message, type ItemType, type MenuProps } from 'ant-design-vue';
 import { reactive, ref } from 'vue';
 import SkipCheck from './pages/SkipCheck.vue';
-import { sendIPC } from './util/ipcSender';
+import { handler } from './util/ipcSender';
 
 const activeMenu = ref('跳检测')
 const selectedKeys = ref<string[]>(['跳检测']);
@@ -23,21 +23,24 @@ const items: ItemType[] = reactive([
 
 const handleClick: MenuProps['onClick'] = e => {
   if (e.key == 'NPK用途对照') {
-    sendIPC('open', 'https://bbs.aladedalu.com/thread-2018-1-1.html')
+    handler.emit('open', 'https://bbs.aladedalu.com/thread-2018-1-1.html')
   }
   activeMenu.value = e.key as string
 };
+handler.on('notice', ({ success, text }) => {
+  if (success) message.success(text)
+  else message.error(text)
+})
 </script>
 
 <template>
   <a-space direction="vertical" :style="{ width: '100%' }" :size="[0, 48]">
     <a-layout>
-      <a-layout-sider style="background-color: white;">
-        <a-menu v-model:selectedKeys="selectedKeys" style="width: 180px" mode="inline" :items="items"
-          @click="handleClick" />
+      <a-layout-sider style="background-color: white; ">
+        <a-menu v-model:selectedKeys="selectedKeys" mode="inline" :items="items" @click="handleClick" />
       </a-layout-sider>
       <a-layout>
-        <a-layout-content style="background-color: white;">
+        <a-layout-content style="background-color: #F5F5F5;">
           <SkipCheck v-show="activeMenu == '跳检测'" />
         </a-layout-content>
       </a-layout>

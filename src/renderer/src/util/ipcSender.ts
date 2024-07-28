@@ -1,7 +1,3 @@
-export function sendIPC(event: string, data?: any) {
-    window.electron.ipcRenderer.send('event', { event, data })
-}
-
 const postMessage = (message: any) => {
     if (window.electron) {
         window.electron.ipcRenderer.send('event', message)
@@ -17,8 +13,8 @@ export const handler = {
     },
     emit(event: string, data?: any) {
         const isObj = typeof data == 'object';
-        const content = isObj ? JSON.parse(JSON.stringify(data)) : data
-        postMessage({ type: event, content })
+        const adjustedData = isObj ? JSON.parse(JSON.stringify(data)) : data
+        postMessage({ event, data: adjustedData })
         return this;
     }
 }
