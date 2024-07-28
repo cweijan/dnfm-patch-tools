@@ -2,6 +2,7 @@
 import type { ItemType, MenuProps } from 'ant-design-vue';
 import { reactive, ref } from 'vue';
 import SkipCheck from './pages/SkipCheck.vue';
+import { sendIPC } from './util/ipcSender';
 
 const activeMenu = ref('跳检测')
 const selectedKeys = ref<string[]>(['跳检测']);
@@ -22,7 +23,7 @@ const items: ItemType[] = reactive([
 
 const handleClick: MenuProps['onClick'] = e => {
   if (e.key == 'NPK用途对照') {
-    return window.electron.ipcRenderer.send('open', 'https://bbs.aladedalu.com/thread-2018-1-1.html')
+    sendIPC('open', 'https://bbs.aladedalu.com/thread-2018-1-1.html')
   }
   activeMenu.value = e.key as string
 };
@@ -38,7 +39,6 @@ const handleClick: MenuProps['onClick'] = e => {
       <a-layout>
         <a-layout-content style="background-color: white;">
           <SkipCheck v-show="activeMenu == '跳检测'" />
-          <!-- <Reference v-show="activeMenu == 'NPK用途对照'" /> -->
         </a-layout-content>
       </a-layout>
     </a-layout>
