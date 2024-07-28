@@ -6,10 +6,10 @@ import { initIPCHandler } from './ipcHandler'
 
 function createWindow(): void {
   const mainWindow = new BrowserWindow({
+    icon,
     width: 900,
     height: 670,
     show: false,
-    ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
       sandbox: false,
       nodeIntegration: true,
