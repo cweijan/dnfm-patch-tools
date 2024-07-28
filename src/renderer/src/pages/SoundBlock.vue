@@ -1,9 +1,10 @@
 <template>
     <div>
-        <a-card title="怪物语音屏蔽" style="width: 350px" class="m-2">
+        <a-card title="怪物语音屏蔽" style="width: 350px" class="mb-5">
             <p>对烦人的语音进行屏蔽, 如布万加和深渊:</p>
-            <p>1. 布万加(雪山搬砖): sounds_mon_act5.npk</p>
-            <p>2. 天界(深渊): sounds_mon_act7.npk</p>
+            <p>- 天界(深渊): sounds_mon_act7.npk</p>
+            <p>- 布万加(雪山): sounds_mon_act5.npk</p>
+            <p>- 黑色大地: sounds_mon_m_blackcrack.npk</p>
             <p>补丁生成后, 替换到DNF手游资源目录即可生效</p>
         </a-card>
         <a-form :model="formState" :label-col="{ span: 4 }" :wrapper-col="{ span: 16 }">

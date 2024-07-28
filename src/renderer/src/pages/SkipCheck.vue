@@ -1,6 +1,6 @@
 <template>
     <div>
-        <a-card title="跳过手游检测" style="width: 300px" class="m-2">
+        <a-card title="跳过手游检测" style="width: 300px" class="mb-5">
             对修改后的NPK进行处理, 使其跳过国服资源检测
         </a-card>
         <a-form :model="formState" :label-col="{ span: 4 }" :wrapper-col="{ span: 16 }">

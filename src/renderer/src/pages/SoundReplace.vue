@@ -1,6 +1,6 @@
 <template>
     <div>
-        <a-card title="替换韩服语音" style="width: 300px" class="m-2">
+        <a-card title="替换韩服语音" style="width: 300px" class="mb-5">
             <!-- <template #extra>
                 <a href="#">视频教程</a>
             </template> -->
