@@ -1,7 +1,7 @@
 <template>
     <div>
         <a-card title="怪物语音屏蔽" style="width: 350px" class="mb-5">
-            <p>对烦人的语音进行屏蔽, 如布万加和深渊:</p>
+            <p>选择烦人的语音进行屏蔽, 如布万加和深渊:</p>
             <p>- 天界(深渊): sounds_mon_act7.npk</p>
             <p>- 布万加(雪山): sounds_mon_act5.npk</p>
             <p>- 黑色大地: sounds_mon_m_blackcrack.npk</p>
