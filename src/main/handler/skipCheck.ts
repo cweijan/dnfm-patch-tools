@@ -1,36 +1,21 @@
 import { shell } from 'electron';
 import fs from 'fs';
 import path from 'path';
-import lzma from 'lzma';
 
 interface SkipCheckInfo {
-    compress: true;
     sourceNpk: string;
     targetNpk: string;
     successText: string;
 }
 
-function compressNpk(data: Buffer): Promise<Buffer> {
-    return new Promise((resolve, _reject) => {
-        lzma.compress(data, 1, (result) => {
-            resolve(result);
-        }, (_percent) => {
-            console.log('Compressing:', _percent);
-        });
-    })
-}
-
 export async function skipCheck(data: SkipCheckInfo) {
-    const { compress, sourceNpk, targetNpk, successText } = data;
+    const { sourceNpk, targetNpk, successText } = data;
     try {
-        let targetBuffer = fs.readFileSync(targetNpk);
-        if (compress) {
-            targetBuffer = await compressNpk(targetBuffer);
-        }
+        const targetBuffer = fs.readFileSync(targetNpk);
         const sourceStats = fs.statSync(sourceNpk);
         const targetSize = targetBuffer.length;
         if (sourceStats.size < targetSize) {
-            const text = compress ? '生成失败, NPK文件过大!' : '国服NPK文件必须大于修改后的NPK!';
+            const text = '国服NPK文件必须大于修改后的NPK!';
             return { success: false, text }
         } else if (sourceStats.size > targetSize) {
             const difference = sourceStats.size - targetSize;

@@ -50,7 +50,7 @@ import { reactive } from 'vue';
 
 const formState = reactive({
     sourceNpk: '', targetNpk: '',
-    compress: false, successText: '生成替换补丁完成!'
+    successText: '生成替换补丁完成!'
 });
 
 const chooseFile = (type: string) => {
