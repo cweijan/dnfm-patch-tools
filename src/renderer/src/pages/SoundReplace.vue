@@ -48,7 +48,10 @@ import { handler } from '@renderer/util/ipcSender';
 import { message } from 'ant-design-vue';
 import { reactive } from 'vue';
 
-const formState = reactive({ sourceNpk: '', targetNpk: '', });
+const formState = reactive({
+    sourceNpk: '', targetNpk: '',
+    compress: false, successText: '生成替换补丁完成!'
+});
 
 const chooseFile = (type: string) => {
     handler.emit('chooseFile', { type })

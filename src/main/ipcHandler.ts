@@ -9,7 +9,7 @@ function send(event: string, data?: any) {
 }
 
 export function initIPCHandler() {
-    ipcMain.on('event', (_event, { event, data }) => {
+    ipcMain.on('event', async (_event, { event, data }) => {
         switch (event) {
             case 'open':
                 shell.openExternal(data)
@@ -22,7 +22,7 @@ export function initIPCHandler() {
                 });
                 break;
             case 'skipCheck':
-                const message = skipCheck(data);
+                const message = await skipCheck(data);
                 send('notice', message);
                 break;
             case 'blockNpk':
