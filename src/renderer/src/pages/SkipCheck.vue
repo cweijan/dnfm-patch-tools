@@ -1,7 +1,10 @@
 <template>
     <div>
-        <a-card title="跳过手游检测" style="width: 350px" class="mb-5">
-            对修改后的NPK进行处理, 使其跳过国服资源检测
+        <a-card title="跳过手游检测" style="width: 450px" class="mb-5">
+            <p>对修改后的NPK进行处理, 使其跳过国服资源检测</p>
+            <p class="text-red-500">
+                修改后的NPK文件必须小于国服文件大小, 先使用UABEA进行压缩
+            </p>
         </a-card>
         <a-form :model="formState" :label-col="{ span: 4 }" :wrapper-col="{ span: 16 }">
             <a-form-item label="国服NPK" name="sourceNpk" :rules="[{ required: true, message: '请选择NPK文件!' }]">

@@ -12,17 +12,22 @@ const activeMenu = ref('跳检测')
 const selectedKeys = ref<string[]>(['跳检测']);
 
 interface Options {
+  key?: string,
   group?: boolean;
 }
 
 function getItem(label: string, icon?: any, children?: ItemType[], option: Options = {}): ItemType {
-  const { group } = option;
+  const { key = label, group } = option;
   const type = group ? 'group' : null;
-  return { key: label, icon, children, label, type } as ItemType;
+  console.log('key', key, option)
+  return { key, icon, children, label, type } as ItemType;
 }
 const items: ItemType[] = reactive([
-  getItem('手游补丁', null, [getItem('跳检测'), getItem('语音替换'), getItem('语音屏蔽')], { group: true }),
+  getItem('手游补丁', null, [getItem('跳检测'), getItem('语音屏蔽'),], { group: true }),
   getItem('参考资料', null, [getItem('NPK资源获取'), getItem('NPK用途对照')], { group: true }),
+  getItem('其他', null, [
+    getItem('语音替换(格斗家专用)', null, undefined, { key: 'soundReplace' })
+  ], { group: true }),
 ]);
 
 const handleClick: MenuProps['onClick'] = e => {
@@ -47,11 +52,12 @@ handler.on('notice', ({ success, text }) => {
       <a-layout>
         <a-layout-content class="p-2" style="background-color: #F5F5F5;height: calc(100vh - 30px)">
           <SkipCheck v-show="activeMenu == '跳检测'" />
-          <SoundReplace v-show="activeMenu == '语音替换'" />
           <SoundBlock v-show="activeMenu == '语音屏蔽'" />
           <!-- 参考资料 -->
           <NpkPath v-show="activeMenu == 'NPK资源获取'" />
           <NPKIntention v-show="activeMenu == 'NPK用途对照'" />
+          <!-- 其他 -->
+          <SoundReplace v-show="activeMenu == 'soundReplace'" />
         </a-layout-content>
       </a-layout>
     </a-layout>

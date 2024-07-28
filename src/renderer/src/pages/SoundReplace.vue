@@ -1,9 +1,9 @@
 <template>
     <div>
-        <a-card title="替换韩服语音" style="width: 420px" class="mb-5">
-            <!-- <template #extra>
-                <a href="#">视频教程</a>
-            </template> -->
+        <a-card title="替换为韩服语音" style="width: 450px" class="mb-5">
+            <p class="text-red-500">
+                只对安卓格斗家有效
+            </p>
             <p>1. 使用UABEA打开韩服语音NPK</p>
             <p>2. 对NPK进行压缩, 压缩级别选择LZMA </p>
             <p>3. 生成替换补丁, 将修改后的文件替换到DNF手游文件目录</p>
