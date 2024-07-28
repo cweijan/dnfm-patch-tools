@@ -1,12 +1,12 @@
 <template>
     <div>
-        <a-card title="替换韩服语音" style="width: 300px" class="mb-5">
+        <a-card title="替换韩服语音" style="width: 420px" class="mb-5">
             <!-- <template #extra>
                 <a href="#">视频教程</a>
             </template> -->
             <p>1. 使用UABEA打开韩服语音NPK</p>
             <p>2. 对NPK进行压缩, 压缩级别选择LZMA </p>
-            <p>3. 使用本工具跳过检测, 将修改后的文件替换到DNF手游文件目录</p>
+            <p>3. 生成替换补丁, 将修改后的文件替换到DNF手游文件目录</p>
         </a-card>
         <a-form :model="formState" :label-col="{ span: 4 }" :wrapper-col="{ span: 16 }">
             <a-form-item label="国服NPK" name="sourceNpk" :rules="[{ required: true, message: '请选择NPK文件!' }]">
