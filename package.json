@@ -4,7 +4,7 @@
   "description": "An Electron application with Vue and TypeScript",
   "main": "./out/main/index.js",
   "author": "cweijan",
-  "homepage": "https://electron-vite.org",
+  "homepage": "https://github.com/cweijan/dnfm-patch-tools",
   "scripts": {
     "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts,.vue --fix",
     "typecheck:node": "tsc --noEmit -p tsconfig.node.json --composite false",
@@ -16,8 +16,7 @@
     "postinstall": "electron-builder install-app-deps",
     "build:unpack": "npm run build && electron-builder --dir",
     "build:win": "npm run build && electron-builder --win",
-    "build:mac": "npm run build && electron-builder --mac",
-    "build:linux": "npm run build && electron-builder --linux"
+    "build:mac": "npm run build && electron-builder --mac"
   },
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.0",
