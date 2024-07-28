@@ -1,4 +1,3 @@
-/* eslint-env node */
 require("@rushstack/eslint-patch/modern-module-resolution");
 
 module.exports = {
@@ -10,8 +9,11 @@ module.exports = {
     "@vue/eslint-config-typescript/recommended",
   ],
   rules: {
+    "vue/html-indent": "off",
     "vue/require-default-prop": "off",
     "vue/max-attributes-per-line": "off",
-    "vue/multi-word-component-names": "off",
+    "vue/first-attribute-linebreak": "off",
+    "vue/html-closing-bracket-newline": "off",
+    "@typescript-eslint/no-explicit-any": "off",
   },
 };
